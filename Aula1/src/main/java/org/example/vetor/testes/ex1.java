@@ -13,5 +13,7 @@ public class ex1 {
         vetor.inserir("4");
 
         vetor.imprimir();
+        IO.print(vetor.obterTamanho());
+
     }
 }
