@@ -15,6 +15,6 @@ public class Main {
 
         agenda.adicionarContato(c);
 
-        agenda.adicionarContato(d);
+        agenda.buscar("Juan");
     }
 }
