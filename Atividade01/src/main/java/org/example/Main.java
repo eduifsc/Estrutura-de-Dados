@@ -16,5 +16,10 @@ public class Main {
         agenda.adicionarContato(c);
 
         agenda.buscar("Juan");
+
+        agenda.editar("Juan", "João", "000000", "email");
+        agenda.buscar("João");
+
+        agenda.buscarInicio("Jo");
     }
 }

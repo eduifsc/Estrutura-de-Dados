@@ -58,5 +58,52 @@ public class Agenda {
 
     public void editar(String busca, String novoNome, String novoTelefone, String novoEmail) {
 
+        int indice = -1;
+
+        for (int i = 0; i < tamanho; i++) {
+            if (busca.equals(contatos[i].getNome()) || busca.equals(contatos[i].getTelefone())) {
+                indice = i;
+                break;
+            }
+        }
+
+        if (indice == -1) {
+            IO.println("Contato não encontrado");
+            return;
+        }
+
+        for (int i = 0; i < tamanho; i++) {
+            if (i != indice) {
+
+                if (novoNome.equals(contatos[i].getNome())) {
+                    IO.println("Nome do contato já existente");
+                    return;
+                }
+
+                if (novoTelefone.equals(contatos[i].getTelefone())) {
+                    IO.println("Número do contato já existente");
+                    return;
+                }
+
+                if (novoTelefone.equals(contatos[i].getEmail())) {
+                    IO.println("Endereço de e-mail já existente");
+                    return;
+                }
+            }
+        }
+
+        contatos[indice].setNome(novoNome);
+        contatos[indice].setTelefone(novoTelefone);
+        contatos[indice].setEmail(novoEmail);
+
+        IO.println("Contato editado");
+    }
+
+    public void buscarInicio(String busca) {
+        for (int i = 0; i < tamanho; i++) {
+            if (contatos[i].getNome().startsWith(busca)) {
+                IO.println(contatos[i]);
+            }
+        }
     }
 }
