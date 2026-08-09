@@ -106,4 +106,20 @@ public class Agenda {
             }
         }
     }
+
+    public void adicionarContatos(Contato[] novosContatos) {
+        for (Contato contato : novosContatos) {
+            adicionarContato(contato);
+        }
+    }
+
+    public void listarContatos() {
+        if (tamanho == 0) {
+            IO.println("Nenhum contato cadastrado");
+            return;
+        }
+        for (int i = 0; i < tamanho; i++) {
+            IO.println(contatos[i]);
+        }
+    }
 }

@@ -7,19 +7,28 @@ public class Main {
         Contato c = new Contato("Juan", "789");
         Contato d = new Contato("Kaio", "123");
 
-        Agenda agenda = new Agenda(2);
+        Agenda agenda = new Agenda(10);
 
-        agenda.adicionarContato(a);
+//        agenda.adicionarContato(a);
+//
+//        agenda.adicionarContato(b);
+//
+//        agenda.adicionarContato(c);
+//
+//        agenda.buscar("Juan");
+//
+//        agenda.editar("Juan", "João", "000000", "email");
+//        agenda.buscar("João");
+//
+//        agenda.buscarInicio("Jo");
 
-        agenda.adicionarContato(b);
+        Contato[] contatosNovos = {
+                new Contato("Jonas", "1", "emal1"),
+                new Contato("MAurício", "2", "email2"),
+                new Contato("Drogba", "3", "email3")
+        };
 
-        agenda.adicionarContato(c);
-
-        agenda.buscar("Juan");
-
-        agenda.editar("Juan", "João", "000000", "email");
-        agenda.buscar("João");
-
-        agenda.buscarInicio("Jo");
+        agenda.adicionarContatos(contatosNovos);
+        agenda.listarContatos();
     }
 }
