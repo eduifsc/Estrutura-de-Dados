@@ -11,6 +11,7 @@ public class Agenda {
 
     public void adicionarContato(Contato contato) {
 
+        //          VETOR ESTÁTICO:
         for (int i = 0; i < tamanho; i++) {
             if (contato.getNome().equals(contatos[i].getNome())) {
                 IO.println("Nome do contato existente");
@@ -20,15 +21,34 @@ public class Agenda {
                 return;
             }
         }
+//
+//        if (tamanho < contatos.length) {
+//            contatos[tamanho] = contato;
+//            tamanho++;
+//            IO.println("Contato adicionado");
+//        } else {
+//            IO.print("Vetor cheio");
+//        }
+//    }
+        // VETOR DINÂMICO:
 
-        if (tamanho < contatos.length) {
+            if (tamanho == contatos.length) {
+                expandir();
+            }
+
             contatos[tamanho] = contato;
             tamanho++;
-            IO.println("Contato adicionado");
-        } else {
-            IO.print("Vetor cheio");
         }
+
+    private void expandir() {
+        Contato[] novo = new Contato[contatos.length * 2];
+
+        for (int i = 0; i < contatos.length; i++) {
+            novo[i] = contatos[i];
+        }
+        contatos = novo;
     }
+
 
     public void removerContato(int indice){
         if (indice < 0 || indice >= contatos.length) {
@@ -41,6 +61,18 @@ public class Agenda {
         }
         contatos[tamanho - 1] = null;
         tamanho--;
+        reduzir(); //vetor estático não tem, somente no dinâmico
+    }
+
+    public void reduzir() {
+
+        if (tamanho <= contatos.length/4) {
+            Contato[] novo = new Contato[contatos.length/2];
+            for (int i = 0; i < tamanho; i++) {
+                novo[i] = contatos[i];
+            }
+            contatos = novo;
+        }
     }
 
     public void buscar(String busca) {
