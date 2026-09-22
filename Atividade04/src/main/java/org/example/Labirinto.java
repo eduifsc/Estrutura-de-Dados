@@ -3,26 +3,26 @@ package org.example;
 public class Labirinto {
 
 
-        private char[][] mapa = {
-                {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'},
-                {'P',' ',' ','*',' ',' ',' ','*',' ',' ',' ',' ',' ',' ','*'},
-                {'*','*',' ','*',' ','*',' ','*',' ','*','*','*','*',' ','*'},
-                {'*',' ',' ',' ',' ','*',' ',' ',' ','*',' ',' ','*',' ','*'},
-                {'*',' ','*','*','*','*','*','*',' ','*',' ','*','*',' ','*'},
-                {'*',' ','*',' ',' ',' ',' ','*',' ','*',' ',' ',' ',' ','*'},
-                {'*',' ','*',' ','*','*',' ','*',' ','*','*','*','*',' ','*'},
-                {'*',' ',' ',' ','*',' ',' ',' ',' ',' ',' ',' ','*','*','*'},
-                {'*','*','*','*','*',' ','*','*','*','*','*',' ',' ',' ','T'},
-                {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'}
-        };
+    private char[][] mapa = {
+            {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+            {'P', ' ', ' ', '*', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' ', '*'},
+            {'*', '*', ' ', '*', ' ', '*', ' ', '*', ' ', '*', '*', '*', '*', ' ', '*'},
+            {'*', ' ', ' ', ' ', ' ', '*', ' ', ' ', ' ', '*', ' ', ' ', '*', ' ', '*'},
+            {'*', ' ', '*', '*', '*', '*', '*', '*', ' ', '*', ' ', '*', '*', ' ', '*'},
+            {'*', ' ', '*', ' ', ' ', ' ', ' ', '*', ' ', '*', ' ', ' ', ' ', ' ', '*'},
+            {'*', ' ', '*', ' ', '*', '*', ' ', '*', ' ', '*', '*', '*', '*', ' ', '*'},
+            {'*', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', '*', '*'},
+            {'*', '*', '*', '*', '*', ' ', '*', '*', '*', '*', '*', ' ', ' ', ' ', 'T'},
+            {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'}
+    };
 
-        // Posição inicial (linha, coluna)
-        private int linhaInicial = 1;
-        private int colunaInicial = 0;
+    // Posição inicial (linha, coluna)
+    private int linhaInicial = 1;
+    private int colunaInicial = 0;
 
-        // Posição final (linha, coluna)
-        private int linhaFinal = 8;
-        private int colunaFinal = 14;
+//    // Posição final (linha, coluna)
+//    private int linhaFinal = 8;
+//    private int colunaFinal = 14;
 
 //    private char[][] mapa = {
 //            {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'},
@@ -67,17 +67,51 @@ public class Labirinto {
         }
     }
 
-    public void resolucao() {
-        Pilha<Posicao> caminho = new Pilha<Posicao>(200);
+    public boolean resolucao() {
+        Stack<Posicao> caminho = new Stack<>(200);
         caminho.push(new Posicao(linhaInicial, colunaInicial));
+        boolean resolveu = false;
 
         while (!caminho.isEmpty()) {
+            Posicao atual = caminho.peek();
 
+            int linha = atual.getX();
+            int coluna = atual.getY();
+
+            if (mapa[linha][coluna] == 'T') {
+                resolveu = true;
+                return true;
+            }
+
+            if (mapa[linha][coluna] == ' ') {
+                mapa[linha][coluna] = '.';
+            }
+
+            if (linha + 1 < mapa.length && (mapa[linha + 1][coluna] == ' ' || mapa[linha + 1][coluna] == 'T')) {
+                caminho.push(new Posicao(linha + 1, coluna));
+            }
+
+            else if (coluna + 1 < mapa[linha].length && (mapa[linha][coluna + 1] == ' ' || mapa[linha][coluna + 1] == 'T')) {
+                caminho.push(new Posicao(linha, coluna + 1));
+            }
+
+            else if (linha - 1 >= 0 && (mapa[linha - 1][coluna] == ' ' || mapa[linha - 1][coluna] == 'T')) {
+                caminho.push(new Posicao(linha - 1, coluna));
+            }
+
+            else if (coluna - 1 >= 0 && (mapa[linha][coluna - 1] == ' ' || mapa[linha][coluna - 1] == 'T')) {
+                caminho.push(new Posicao(linha, coluna - 1));
+            }
+
+            else caminho.pop();
+        }
+        return resolveu;
+    }
+
+    public static void main (String[]args){
+            Labirinto labirinto = new Labirinto();
+            labirinto.imprimir();
+            labirinto.resolucao();
+            labirinto.imprimir();
         }
     }
-
-    public static void main(String[] args) {
-        Labirinto labirinto = new Labirinto();
-        labirinto.imprimir();
-    }
-}
