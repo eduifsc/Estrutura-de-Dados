@@ -51,6 +51,6 @@ public class Servidor {
                 "Requisições: " + totalReqGeradas +
                 "\n Atendidas: " + totalReqAtendidas +
                 "\nPerdidas: " + totalReqPerdidas +
-                "\n Perdidas%: " + (totalReqPerdidas/totalReqGeradas)*100;
+                "\n Perdidas%: " + ((double) totalReqPerdidas / totalReqGeradas) * 100;
     }
 }
