@@ -1,11 +1,11 @@
 package org.example;
 
-public class Fila<T extends Comparable> {
+public class FilaLinear<T extends Comparable> {
 
     private T[] elementos;
     private int tamanho;
 
-    public Fila(int capacidade) {
+    public FilaLinear(int capacidade) {
         this.elementos = (T[]) new Comparable[capacidade];
         this.tamanho = 0;
     }

@@ -4,16 +4,16 @@ public class Main {
 
     static void main() {
 
-        Fila<String> fila = new Fila<>(10);
+        FilaLinear<String> filaLinear = new FilaLinear<>(10);
 
-        fila.enfileirar("A");
-        fila.enfileirar("B");
-        fila.enfileirar("C");
-        fila.enfileirar("D");
-        fila.imprimir();
-        fila.enfileirar("E");
-        fila.desenfileirar();
-        fila.imprimir();
+        filaLinear.enfileirar("A");
+        filaLinear.enfileirar("B");
+        filaLinear.enfileirar("C");
+        filaLinear.enfileirar("D");
+        filaLinear.imprimir();
+        filaLinear.enfileirar("E");
+        filaLinear.desenfileirar();
+        filaLinear.imprimir();
     }
 
 

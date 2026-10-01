@@ -9,12 +9,12 @@ public class Servidor {
     private int totalReqPerdidas = 0;
 
     private Random aleatorio;
-    private final Fila<String> fila;
+    private final FilaLinear<String> filaLinear;
     private int n;
     private int numProcessadores;
 
     public Servidor(int capacidade, int n, int numProcessadores) {
-        this.fila = new Fila<>(capacidade);
+        this.filaLinear = new FilaLinear<>(capacidade);
         this.n = n;
         this.numProcessadores = numProcessadores;
         this.aleatorio = new Random();
@@ -26,8 +26,8 @@ public class Servidor {
 
             for (int processador = 0; processador < numProcessadores; processador++) {
 
-                if (!fila.isEmpty()) {
-                    fila.desenfileirar();
+                if (!filaLinear.isEmpty()) {
+                    filaLinear.desenfileirar();
                     totalReqAtendidas++;
                 }
             }
@@ -35,8 +35,8 @@ public class Servidor {
             int novasReq = aleatorio.nextInt(1, n);
 
             for (int i = 0; i < novasReq; i++) {
-                if (!fila.isFull()) {
-                    fila.enfileirar(".");
+                if (!filaLinear.isFull()) {
+                    filaLinear.enfileirar(".");
                 } else {
                     totalReqPerdidas++;
                 }

@@ -10,9 +10,9 @@ public class Produtor {
         this.endereco = endereco;
     }
 
-    public void produzirPacote(Fila<Pacote> fila, int numero, String origem, String destino, String dados) {
+    public void produzirPacote(FilaLinear<Pacote> filaLinear, int numero, String origem, String destino, String dados) {
         Pacote pacote = new Pacote(numero, origem, destino, dados);
-        fila.enfileirar(pacote);
+        filaLinear.enfileirar(pacote);
         IO.println(nome + " produziu " + pacote);
     }
 }
